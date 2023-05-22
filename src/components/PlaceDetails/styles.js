@@ -10,4 +10,11 @@ export default makeStyles(() => ({
   spacing: {
     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
   },
+  cardFooter: {
+    padding: '10px'
+  },
+  box: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
 }));

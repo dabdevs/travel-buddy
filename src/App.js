@@ -13,17 +13,36 @@ const App = () => {
     const [bounds, setBounds] = useState(null);
 
     // Get device's current location
-    // useEffect(() => {
-    //     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-    //         setCoordinates({ lat: latitude, lng: longitude });
-    //     })
-    // }, [])
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+            setCoordinates({ lat: latitude, lng: longitude });
+        })
+    }, [])
 
     useEffect(() => {
-        getPlaces().then((data) => {
-            setPlaces(data)
-        });
+        // getPlaces(bounds.ne, bounds.sw).then((data) => {
+        //     setPlaces(data)
+        // });
+        console.log(coordinates)
     }, [coordinates, bounds])
+
+    const testPlaces = [
+        {
+            name: 'First place',
+            price_level: '$$',
+            rating: 4.5
+        },
+        {
+            name: 'Second place',
+            price_level: '$$$$',
+            rating: 4.7
+        },
+        {
+            name: 'Third place',
+            price_level: '$',
+            rating: 4.0
+        },
+    ]
 
     return (
         <>
@@ -31,7 +50,7 @@ const App = () => {
             <Header />
             <Grid container spacing={3} style={{ width: '100%' }}>
                 <Grid item xs={12} md={4}>
-                    <List />
+                    <List places={testPlaces} />
                 </Grid>
                 <Grid item xs={12} md={8}>
                     <Map
