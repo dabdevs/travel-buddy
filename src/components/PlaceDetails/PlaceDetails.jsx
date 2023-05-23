@@ -8,7 +8,6 @@ import useStyles from './styles';
 
 const PlaceDetails = ({ place }) => {
     const classes = useStyles();
-    console.log(place)
 
     return (
         <Card elevation={6}>
@@ -41,9 +40,15 @@ const PlaceDetails = ({ place }) => {
                     </Box>
                 ))}
 
-                {place?.cusine?.map((name) => (
-                    <Chip key={name} size='small' label={name} />
-                ))}
+                {place?.cuisine?.map(({name}) => 
+                   (<Chip size='small' className={classes.chip} label={name} key={name} />)
+                )}
+
+                {place?.address && 
+                    (<Box my={1} className={classes.box}>
+                        <Typography gutterBottom variant='body'> <LocationOnIcon /> {place.address}</Typography>
+                    </Box>)
+                }
 
             </div>
         </Card>
